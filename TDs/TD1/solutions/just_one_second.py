@@ -28,12 +28,10 @@ ajout = int(input('Combien de secondes voulez vous ajouter ? '))
 secondes += ajout
 
 if secondes > 59:
-    secondes -= 60
-    minutes += 1
-    if minutes == 60:
-        minutes = 0
-        heures += 1
-        if heures == 24:
-            heures = 0
+    minutes += secondes // 60
+    secondes = secondes % 60
+    if minutes > 59:
+        heures = (heures + minutes // 60) % 24
+        minutes = minutes % 60
 
-print(f'Dans une seconde, il sera {heures} heures {minutes} minutes et {secondes} secondes.')
+print(f'Dans {ajout} secondes, il sera {heures} heures {minutes} minutes et {secondes} secondes.')
